@@ -1,4 +1,5 @@
 import React from 'react';
+import { Wrapper, Form, CheckBox, Input } from './AddToDo.styles';
 
 const AddToDo = ({ inputText, setInputText, todos, setToDos }) => {
   const handleInputText = (e) => {
@@ -16,19 +17,18 @@ const AddToDo = ({ inputText, setInputText, todos, setToDos }) => {
   };
 
   return (
-    <div className="w-full text-center">
-      <form className="relative" onSubmit={handleToDoSubmit}>
-        <button className="absolute left-[14%] top-[23%] aspect-square h-6 rounded-full border-[1px] border-solid border-gray-300 "></button>
+    <Wrapper>
+      <Form onSubmit={handleToDoSubmit}>
+        <CheckBox></CheckBox>
 
-        <input
-          className="h-12 w-[83%] rounded-2xl text-center"
+        <Input
           type="text"
           placeholder="Write your next to do..."
           value={inputText}
           onChange={handleInputText}
         />
-      </form>
-    </div>
+      </Form>
+    </Wrapper>
   );
 };
 

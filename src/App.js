@@ -1,9 +1,8 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import AddToDo from './components/AddToDo';
-import ToDos from './components/ToDos';
-import SelectToDos from './components/SelectToDos';
-// import styled from 'styled-components';
+import AddToDo from './components/AddToDo/AddToDo';
+import ToDos from './components/ToDos/ToDos';
+import { Container } from './App.styles';
 
 function App() {
   //state
@@ -33,8 +32,20 @@ function App() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-screen flex-col bg-neutral-vl-grayish-blue font-josefin-sans">
+    <Container>
       <div className="flex h-[13rem] flex-col items-center justify-center bg-[url('../images/bg-mobile-light.jpg')] bg-cover bg-no-repeat">
+        <div>
+          <p>TO DO</p>
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+              <path
+                fill="#FFF"
+                fill-rule="evenodd"
+                d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"
+              />
+            </svg>
+          </button>
+        </div>
         <AddToDo
           todos={todos}
           setToDos={setToDos}
@@ -42,17 +53,15 @@ function App() {
           setInputText={setInputText}
         />
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="-mt-6 mb-4 flex max-h-max flex-col items-center justify-center">
         <ToDos
           todos={todos}
           setToDos={setToDos}
           filteredToDos={filteredToDos}
+          setCurrFilter={setCurrFilter}
         />
       </div>
-      <div className="absolute bottom-[4%] w-full">
-        <SelectToDos setCurrFilter={setCurrFilter} />
-      </div>
-    </div>
+    </Container>
   );
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
-import ToDo from './ToDo';
+import ToDo from '../ToDo/ToDo';
+import SelectToDos from '../SelectToDos/SelectToDos';
+import { ToDoWrapper, ToDoList, ToDoItem } from './ToDos.styles';
 
-const ToDos = ({ todos, setToDos, filteredToDos }) => {
+const ToDos = ({ todos, setToDos, filteredToDos, setCurrFilter }) => {
   // console.log(todos);
 
   const toDosLeft = () => {
@@ -21,6 +23,7 @@ const ToDos = ({ todos, setToDos, filteredToDos }) => {
     return filteredToDos.map((todo) => (
       <ToDo
         todos={todos}
+        filteredToDos={filteredToDos}
         setToDos={setToDos}
         key={todo.id}
         todo={todo}
@@ -31,14 +34,16 @@ const ToDos = ({ todos, setToDos, filteredToDos }) => {
   };
 
   return (
-    <div className="-mt-5 h-fit w-4/5">
-      {renderToDos()}
-      <li className="mt-1 flex h-[3.1rem] w-full flex-row items-center justify-around rounded-2xl bg-neutral-vl-light-gray text-sm ">
-        <p>{toDosLeft()}</p>
-
-        <button onClick={clearCompletedToDos}>Clear completed</button>
-      </li>
-    </div>
+    <ToDoWrapper>
+      <ToDoList>
+        {renderToDos()}
+        <ToDoItem>
+          <p>{toDosLeft()}</p>
+          <button onClick={clearCompletedToDos}>Clear completed</button>
+        </ToDoItem>
+      </ToDoList>
+      <SelectToDos setCurrFilter={setCurrFilter} />
+    </ToDoWrapper>
   );
 };
 
