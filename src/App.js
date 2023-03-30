@@ -2,7 +2,13 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import AddToDo from './components/AddToDo/AddToDo';
 import ToDos from './components/ToDos/ToDos';
-import { Container } from './App.styles';
+import {
+  Container,
+  Header,
+  Intro,
+  AddToDoWrap,
+  ToDoListWrap,
+} from './App.styles';
 
 function App() {
   //state
@@ -33,8 +39,8 @@ function App() {
 
   return (
     <Container>
-      <div className="flex h-[13rem] flex-col items-center justify-center bg-[url('../images/bg-mobile-light.jpg')] bg-cover bg-no-repeat">
-        <div>
+      <Header>
+        <Intro>
           <p>TO DO</p>
           <button>
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
@@ -45,22 +51,24 @@ function App() {
               />
             </svg>
           </button>
-        </div>
-        <AddToDo
-          todos={todos}
-          setToDos={setToDos}
-          inputText={inputText}
-          setInputText={setInputText}
-        />
-      </div>
-      <div className="-mt-6 mb-4 flex max-h-max flex-col items-center justify-center">
+        </Intro>
+        <AddToDoWrap>
+          <AddToDo
+            todos={todos}
+            setToDos={setToDos}
+            inputText={inputText}
+            setInputText={setInputText}
+          />
+        </AddToDoWrap>
+      </Header>
+      <ToDoListWrap>
         <ToDos
           todos={todos}
           setToDos={setToDos}
           filteredToDos={filteredToDos}
           setCurrFilter={setCurrFilter}
         />
-      </div>
+      </ToDoListWrap>
     </Container>
   );
 }
