@@ -22,7 +22,7 @@ const ToDo = ({ text, todo, todos, setToDos, filteredToDos }) => {
 
   return (
     <ToDoItem>
-      <ToDoButton onClick={handleToDoCompletion} />
+      <ToDoButton completed={todo.id} onClick={handleToDoCompletion} />
       <ToDoText completed={todo.completed}>{text}</ToDoText>
       <DeleteButton onClick={handleToDoDeletion}>
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
