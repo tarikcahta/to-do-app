@@ -11,9 +11,11 @@ export const Container = styled.div`
   /* align-items: center; */
   min-height: 100vh;
   height: auto;
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   background-color: ${(props) => props.theme.bgColor};
   font-family: 'Josefin Sans', sans-serif;
+  overflow-x: hidden;
 `;
 
 export const Header = styled.div`
