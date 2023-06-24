@@ -1,18 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 96%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Form = styled.form`
   position: relative;
+  background-color: ${(props) => props.theme.toDoBgColor};
+  border-radius: 0.3rem;
+  width: 83%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const CheckBox = styled.button`
-  position: absolute;
-  left: 14%;
-  top: 23%;
+  margin-left: 1.3rem;
   aspect-ratio: 1 / 1;
   height: 1.5rem;
   width: 1.5rem;
@@ -21,9 +27,23 @@ export const CheckBox = styled.button`
 `;
 
 export const Input = styled.input`
-height: 3rem;
-width: 83%;
-border-radius: 1rem;
-text-align: center;
-font-size: 0.9rem;
+  background-color: ${(props) => props.theme.toDoBgColor};
+  height: 3rem;
+  width: 87%;
+  margin-left: 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  color: ${(props) => props.theme.toDoColor};
+  ${({ completed }) =>
+    completed &&
+    css`
+      color: ${(props) => props.theme.filterToDosColor};
+      font-weight: 400;
+    `}
+
+  outline: none;
+  &:active,
+  &:focus {
+    outline: none;
+  }
 `;
