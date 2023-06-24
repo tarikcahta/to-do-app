@@ -1,14 +1,30 @@
-import React from 'react';
 import ToDo from '../ToDo/ToDo';
 import SelectToDos from '../SelectToDos/SelectToDos';
 import { ToDoWrapper, ToDoList, ToDoItem } from './ToDos.styles';
+import ToDosActionBar from '../ToDosActionBar/ToDosActionBar';
+import { useState, useEffect } from 'react';
 
 const ToDos = ({ todos, setToDos, filteredToDos, setCurrFilter }) => {
   // console.log(todos);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const toDosLeft = () => {
     if (filteredToDos.length === 0) {
       return 'No items left';
+    } else if (filteredToDos.length === 1) {
+      return `${filteredToDos.length} item left`;
     } else {
       return `${filteredToDos.length} items left`;
     }
@@ -35,14 +51,28 @@ const ToDos = ({ todos, setToDos, filteredToDos, setCurrFilter }) => {
 
   return (
     <ToDoWrapper>
-      <ToDoList>
-        {renderToDos()}
-        <ToDoItem>
-          <p>{toDosLeft()}</p>
-          <button onClick={clearCompletedToDos}>Clear completed</button>
-        </ToDoItem>
-      </ToDoList>
-      <SelectToDos setCurrFilter={setCurrFilter} />
+      {isMobile ? (
+        <div>
+          <ToDoList>
+            {renderToDos()}
+
+            <ToDoItem>
+              <p>{toDosLeft()}</p>
+              <button onClick={clearCompletedToDos}>Clear Completed</button>
+            </ToDoItem>
+          </ToDoList>
+          <SelectToDos setCurrFilter={setCurrFilter} />
+        </div>
+      ) : (
+        <div>
+          <ToDoList>{renderToDos()}</ToDoList>
+          <ToDosActionBar
+            toDosLeft={toDosLeft}
+            clearCompletedToDos={clearCompletedToDos}
+            setCurrFilter={setCurrFilter}
+          />
+        </div>
+      )}
     </ToDoWrapper>
   );
 };
