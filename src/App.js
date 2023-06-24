@@ -1,5 +1,4 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AddToDo from './components/AddToDo/AddToDo';
 import ToDos from './components/ToDos/ToDos';
 import {
@@ -8,7 +7,36 @@ import {
   Intro,
   AddToDoWrap,
   ToDoListWrap,
+  Parag,
 } from './App.styles';
+import { ThemeProvider } from 'styled-components';
+import { ThemeIcon } from './components/ThemeIcon';
+
+const theme = {
+  light: {
+    mode: 'light',
+    toDoBgColor: 'hsl(0, 0%, 98%)', //to do bg color
+    bgColor: 'hsl(236, 33%, 92%)', // background color
+    toDoDoneColor: 'hsl(233, 11%, 84%)', //when task is done
+    filterToDosColor: 'rgba(147, 148, 165, 0.6)', // for filter tasks
+    toDoColor: 'hsl(235, 19%, 35%)', //to do task
+    bgImageMob: './img/bg-mobile-light.jpg',
+    // bgImageDesk: './img/bg-desktop-light.jpg',
+  },
+  dark: {
+    mode: 'dark',
+    bgColor: 'hsl(235, 21%, 11%)',
+    toDoBgColor: 'hsl(235, 24%, 19%)',
+    toDoColor: 'hsl(234, 39%, 85%)',
+    filterToDosColor: 'rgba(147, 148, 165, 0.6)', // for filter tasks
+    dtLightGrayishBlueHover: 'hsl(236, 33%, 92%)',
+    dtDarkGrayishBlue: 'hsl(234, 11%, 52%)',
+    dtVeryDarkGrayishBlue: 'hsl(233, 14%, 35%)',
+    dtVeryDarkGrayishBlue2: 'hsl(237, 14%, 26%)',
+    bgImageMob: './img/bg-mobile-dark.jpg',
+    // bgImageDesk: './img/bg-desktop-dark.jpg',
+  },
+};
 
 function App() {
   //state
@@ -16,6 +44,12 @@ function App() {
   const [todos, setToDos] = useState([]);
   const [currFilter, setCurrFilter] = useState('all');
   const [filteredToDos, setFilteredToDos] = useState([]);
+  const [currTheme, setCurrTheme] = useState('light');
+  const isMobile = window.innerWidth <= 768;
+
+  console.log(theme[currTheme]);
+  console.log(theme[currTheme].bgImageMob);
+  // console.log(currTheme)
 
   useEffect(() => {
     handleFilteringToDos();
@@ -37,39 +71,41 @@ function App() {
     }
   };
 
+  const handleThemeToggle = () => {
+    setCurrTheme(currTheme === 'light' ? 'dark' : 'light');
+  };
+
   return (
-    <Container>
-      <Header>
-        <Intro>
-          <p>TO DO</p>
-          <button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
-              <path
-                fill="#FFF"
-                fill-rule="evenodd"
-                d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"
-              />
-            </svg>
-          </button>
-        </Intro>
-        <AddToDoWrap>
-          <AddToDo
+    <ThemeProvider theme={theme[currTheme]}>
+      <Container isMobile={isMobile}>
+        <Header>
+          <Intro>
+            <Parag>TO DO</Parag>
+            <ThemeIcon
+              handleThemeToggle={handleThemeToggle}
+              currTheme={currTheme}
+            />
+          </Intro>
+          <AddToDoWrap>
+            <AddToDo
+              todos={todos}
+              setToDos={setToDos}
+              inputText={inputText}
+              setInputText={setInputText}
+            />
+          </AddToDoWrap>
+        </Header>
+        <ToDoListWrap>
+          <ToDos
+            isMobile={isMobile}
             todos={todos}
             setToDos={setToDos}
-            inputText={inputText}
-            setInputText={setInputText}
+            filteredToDos={filteredToDos}
+            setCurrFilter={setCurrFilter}
           />
-        </AddToDoWrap>
-      </Header>
-      <ToDoListWrap>
-        <ToDos
-          todos={todos}
-          setToDos={setToDos}
-          filteredToDos={filteredToDos}
-          setCurrFilter={setCurrFilter}
-        />
-      </ToDoListWrap>
-    </Container>
+        </ToDoListWrap>
+      </Container>
+    </ThemeProvider>
   );
 }
 
