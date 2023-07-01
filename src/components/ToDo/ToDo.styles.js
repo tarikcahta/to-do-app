@@ -30,6 +30,10 @@ const Button = styled.button`
      hsl(280, 87%, 65%)
    );`}
 
+  &:hover {
+    border: 1px solid hsl(192, 100%, 67%);
+  }
+
   @media (min-width: 768px) {
     left: 3.3%;
   }
@@ -60,39 +64,6 @@ export const ToDoButton = ({ onClick }) => {
     </Button>
   );
 };
-
-// export const ToDoButton = styled.input`
-//   /* background-color: hsl(235, 24%, 19%); */
-//   position: absolute;
-//   left: 7%;
-//   top: 24%;
-//   aspect-ratio: 1 / 1;
-//
-//   /* padding: 12px 12px; */
-//   /* border-radius: 50%;
-//   border-width: 1px;
-//   border-style: solid;
-
-//   color: white;
-//   text-align: center;
-//   text-decoration: none;
-//   transition: background-color 0.3s ease; */
-
-//   -webkit-appearance: none;
-//   border-width: 1px;
-//   border-style: solid;
-//   background-image: linear-gradient(
-//     to right,
-//     hsl(192, 100%, 67%),
-//     hsl(280, 87%, 65%)
-//   );
-//   border-radius: 50%;
-//   cursor: pointer;
-
-//   @media (min-width: 768px) {
-//     left: 3.3%;
-//   }
-// `;
 
 export const ToDoText = styled.p`
   margin-left: 19%;
