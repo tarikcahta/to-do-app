@@ -80,7 +80,7 @@ export const ToDoText = styled.p`
     `}
 
   @media (min-width: 768px) {
-    margin-left: 10%;
+    margin-left: 7%;
   }
 `;
 
