@@ -54,7 +54,7 @@ export const AddToDoWrap = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
-    width: 63%;
+    width: 64%;
   }
 `;
 
