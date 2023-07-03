@@ -32,3 +32,7 @@ export const ToDoItem = styled.li`
   font-weight: 600;
   line-height: 1.25rem;
 `;
+
+export const ItemsLeft = styled.p`
+  margin-right: 5rem;
+`;

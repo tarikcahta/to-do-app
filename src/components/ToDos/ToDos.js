@@ -1,6 +1,6 @@
 import ToDo from '../ToDo/ToDo';
 import SelectToDos from '../SelectToDos/SelectToDos';
-import { ToDoWrapper, ToDoList, ToDoItem } from './ToDos.styles';
+import { ToDoWrapper, ToDoList, ToDoItem, ItemsLeft } from './ToDos.styles';
 import ToDosActionBar from '../ToDosActionBar/ToDosActionBar';
 import { useState, useEffect } from 'react';
 
@@ -57,7 +57,7 @@ const ToDos = ({ todos, setToDos, filteredToDos, setCurrFilter }) => {
             {renderToDos()}
 
             <ToDoItem>
-              <p>{toDosLeft()}</p>
+              <ItemsLeft>{toDosLeft()}</ItemsLeft>
               <button onClick={clearCompletedToDos}>Clear Completed</button>
             </ToDoItem>
           </ToDoList>
