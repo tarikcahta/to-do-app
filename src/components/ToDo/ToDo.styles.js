@@ -17,7 +17,7 @@ const Button = styled.button`
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  left: 7%;
+  left: 6.5%;
   top: 24%;
   border: 1px solid lightgray;
   border-radius: 50%;
@@ -35,7 +35,7 @@ const Button = styled.button`
   }
 
   @media (min-width: 768px) {
-    left: 3.3%;
+    left: 2.3%;
   }
 `;
 

@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  width: 96%;
+  width: 96.5%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+    width: 94%;
+  }
 `;
 
 export const Form = styled.form`
@@ -28,6 +32,7 @@ export const CheckBox = styled.button`
 
 export const Input = styled.input`
   background-color: ${(props) => props.theme.toDoBgColor};
+  border-radius: 0.3rem;
   height: 3rem;
   width: 87%;
   margin-left: 1rem;
