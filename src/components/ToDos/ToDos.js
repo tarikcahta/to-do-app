@@ -38,7 +38,7 @@ const ToDos = ({
   };
 
   const clearCompletedToDos = () => {
-    setToDos(filteredToDos.filter((toDo) => !toDo.completed));
+    setToDos(todos.filter((toDo) => !toDo.completed));
     renderToDos();
   };
 
