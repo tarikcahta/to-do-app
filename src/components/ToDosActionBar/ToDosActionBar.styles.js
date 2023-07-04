@@ -18,7 +18,7 @@ export const FilterButtons = styled.div`
 
 export const FilterButton = styled.button`
   font-size: 0.65rem;
-  margin: 0 3.2rem 0;
+  margin: 0 4.6rem 0;
   border: none;
   outline: none;
   cursor: pointer;
