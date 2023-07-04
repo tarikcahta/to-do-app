@@ -17,8 +17,8 @@ export const FilterButtons = styled.div`
 `;
 
 export const FilterButton = styled.button`
- font-size: 0.65rem;
-  margin: 0 2.2rem 0;
+  font-size: 0.65rem;
+  margin: 0 3.2rem 0;
   border: none;
   outline: none;
   cursor: pointer;
@@ -26,6 +26,10 @@ export const FilterButton = styled.button`
   &:active,
   &:focus {
     color: hsl(220, 98%, 61%);
+  }
+
+  &:hover {
+    color: ${(props) => props.theme.toDoColor};
   }
 `;
 
@@ -43,4 +47,8 @@ export const ToDoItem = styled.li`
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.25rem;
+
+  &:hover {
+    color: ${(props) => props.theme.toDoColor};
+  }
 `;
