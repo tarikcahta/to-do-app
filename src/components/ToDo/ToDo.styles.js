@@ -45,17 +45,11 @@ const Checkmark = styled(CheckmarkSVG)`
   margin-left: 0.36rem;
 `;
 
-export const ToDoButton = ({ onClick }) => {
-  const [clicked, setClicked] = useState(false);
+export const ToDoButton = ({ onClick, clicked, setClicked }) => {
+  // const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    if (!clicked) {
-      setClicked(true);
-      onClick();
-    } else if (clicked) {
-      setClicked(false);
-      onClick();
-    }
+    onClick();
   };
 
   return (

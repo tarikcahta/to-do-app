@@ -1,6 +1,14 @@
 import { ToDoItem, ToDoButton, ToDoText, DeleteButton } from './ToDo.styles';
 
-const ToDo = ({ text, todo, todos, setToDos, filteredToDos }) => {
+const ToDo = ({
+  text,
+  todo,
+  todos,
+  setToDos,
+  filteredToDos,
+  clicked,
+  setClicked,
+}) => {
   const handleToDoDeletion = () => {
     setToDos(filteredToDos.filter((elem) => elem.id !== todo.id));
     console.log(todo);
@@ -13,6 +21,7 @@ const ToDo = ({ text, todo, todos, setToDos, filteredToDos }) => {
           return {
             ...item,
             completed: !item.completed,
+            clicked: !item.clicked,
           };
         }
         return item;
@@ -22,7 +31,12 @@ const ToDo = ({ text, todo, todos, setToDos, filteredToDos }) => {
 
   return (
     <ToDoItem>
-      <ToDoButton completed={todo.id} onClick={handleToDoCompletion} />
+      <ToDoButton
+        clicked={todo.clicked}
+        setClicked={setClicked}
+        completed={todo.id}
+        onClick={handleToDoCompletion}
+      />
       <ToDoText completed={todo.completed}>{text}</ToDoText>
       <DeleteButton onClick={handleToDoDeletion}>
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">

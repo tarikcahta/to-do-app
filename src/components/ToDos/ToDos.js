@@ -4,7 +4,14 @@ import { ToDoWrapper, ToDoList, ToDoItem, ItemsLeft } from './ToDos.styles';
 import ToDosActionBar from '../ToDosActionBar/ToDosActionBar';
 import { useState, useEffect } from 'react';
 
-const ToDos = ({ todos, setToDos, filteredToDos, setCurrFilter }) => {
+const ToDos = ({
+  todos,
+  setToDos,
+  filteredToDos,
+  setCurrFilter,
+  clicked,
+  setClicked,
+}) => {
   // console.log(todos);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -38,6 +45,8 @@ const ToDos = ({ todos, setToDos, filteredToDos, setCurrFilter }) => {
   const renderToDos = () => {
     return filteredToDos.map((todo) => (
       <ToDo
+        clicked={clicked}
+        setClicked={setClicked}
         todos={todos}
         filteredToDos={filteredToDos}
         setToDos={setToDos}

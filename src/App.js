@@ -41,9 +41,17 @@ const theme = {
 function App() {
   //state
   const [inputText, setInputText] = useState('');
-  const [todos, setToDos] = useState([]);
+  const [todos, setToDos] = useState([
+    {
+      text: 'Complete to do app',
+      completed: false,
+      id: 1,
+      clicked: false,
+    },
+  ]);
   const [currFilter, setCurrFilter] = useState('all');
   const [filteredToDos, setFilteredToDos] = useState([]);
+  const [clicked, setClicked] = useState(false);
   const [currTheme, setCurrTheme] = useState('light');
   const isMobile = window.innerWidth <= 768;
 
@@ -64,6 +72,7 @@ function App() {
         break;
       case 'notCompleted':
         setFilteredToDos(todos.filter((todo) => todo.completed === false));
+        console.log(todos);
         break;
       default:
         setFilteredToDos(todos);
@@ -102,6 +111,8 @@ function App() {
             setToDos={setToDos}
             filteredToDos={filteredToDos}
             setCurrFilter={setCurrFilter}
+            clicked={clicked}
+            setClicked={setClicked}
           />
         </ToDoListWrap>
       </Container>
